@@ -5,18 +5,23 @@
 
       <v-layout row justify-start class='mb-3'>
         <v-tooltip top>
-          <v-btn small color='grey' @click='sortBy("title")' slot='activator'>
-            <v-icon left small>folder</v-icon>
-            <span class='caption text-lowercase'>By project name</span>
-          </v-btn>
+          <template v-slot:activator="{ on }">
+            <v-btn small color='grey' @click='sortBy("title")' v-on='on'>
+              <v-icon left small>folder</v-icon>
+              <span class='caption text-lowercase'>By project name</span>
+            </v-btn>
+          </template>
+          
           <span>Sort projects by project name</span>
         </v-tooltip>
        
        <v-tooltip top>
-          <v-btn small color='grey' @click='sortBy("person")' slot='activator'>
-            <v-icon left small>person</v-icon>
-            <span class='caption text-lowercase'>By person</span>
-          </v-btn>
+         <template v-slot:activator='{ on }'>
+            <v-btn small color='grey' @click='sortBy("person")' v-on='on'>
+              <v-icon left small>person</v-icon>
+              <span class='caption text-lowercase'>By person</span>
+            </v-btn>
+          </template>
           <span>Sort by project</span>
        </v-tooltip>
         

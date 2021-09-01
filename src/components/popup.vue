@@ -1,8 +1,10 @@
 <template>
   <v-dialog max-width='600px'>
-    <v-btn slot='activator' class='success'>
-      Add new project
-    </v-btn>
+    <template v-slot:activator="{ on }">
+      <v-btn v-on='on' class='success'>
+        Add new project
+      </v-btn>
+    </template>
     <v-card>
       <v-card-title>
         <h2>Add a New Project</h2>
