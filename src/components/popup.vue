@@ -13,6 +13,13 @@
         <v-form class='px-3'>
           <v-text-field label='Title' prepend-icon='folder' v-model='title'></v-text-field>
           <v-textarea label='information' v-model='content' prepend-icon='edit'></v-textarea>
+          <v-menu>
+            <v-text-field :value='formattedDate' label='Due date' prepend-icon='date_range' slot='activator'></v-text-field>
+            <template v-slot:activator='{ on }'>
+              <v-date-picker v-on='on' v-model='due'></v-date-picker>
+            </template>
+          </v-menu>
+          <v-spacer></v-spacer>
           <v-btn class='success mx-0 mt-3' @click='submit'>Add project</v-btn>
         </v-form>
       </v-card-text>
@@ -21,16 +28,23 @@
 </template>
 
 <script>
+import format from 'date-fns/format';
 export default {
   data() {
     return {
       title: '',
-      content: ''
+      content: '',
+      due: null
     }
   },
   methods: {
     submit() {
       console.log(this.title, this.content)
+    }
+  },
+  computed: {
+    formattedDate() {
+      return this.due ? format(this.due, 'Do MMM YYYY') : '' 
     }
   }
 }
