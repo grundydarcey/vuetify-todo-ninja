@@ -10,9 +10,9 @@
         <h2>Add a New Project</h2>
       </v-card-title>
       <v-card-text>
-        <v-form class='px-3'>
-          <v-text-field label='Title' prepend-icon='folder' v-model='title'></v-text-field>
-          <v-textarea label='information' v-model='content' prepend-icon='edit'></v-textarea>
+        <v-form ref='form' class='px-3'>
+          <v-text-field :rules='inputRules' label='Title' prepend-icon='folder' v-model='title'></v-text-field>
+          <v-textarea label='information' :rules='inputRules' v-model='content' prepend-icon='edit'></v-textarea>
           <v-menu>
             <v-text-field :value='formattedDate' label='Due date' prepend-icon='date_range' slot='activator'></v-text-field>
             <template v-slot:activator='{ on }'>
@@ -34,12 +34,17 @@ export default {
     return {
       title: '',
       content: '',
-      due: null
+      due: null,
+      inputRules: [
+        v => v.length >= 3 || 'Minimum length is 3 characters'
+      ]
     }
   },
   methods: {
     submit() {
-      console.log(this.title, this.content)
+      if(this.#refs.form.vaildate()) {
+        console.log(this.title, this.content);      
+      }
     }
   },
   computed: {
