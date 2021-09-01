@@ -22,7 +22,7 @@
         
       </v-layout>
 
-      <v-card flat class='pa-3' v-for='project in projects' :key='project.title'>
+      <v-card class='pa-3' v-for='project in projects' :key='project.title'>
         <v-layout row :class='`pa-3 project ${project.status}`'>
           <v-flex xs12 md6>
             <div class='caption grey--text'>Project Title</div>
